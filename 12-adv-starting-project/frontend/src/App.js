@@ -21,9 +21,21 @@ let router = createBrowserRouter([{
         index: true, element: <EventsPage />,
         loader: loader
       },
-      { path: ":eventsPage", element: <EventDetailPage />, loader: eventDetail },
+      {
+        path: ':eventId',
+        id: 'event-detail',
+        loader: eventDetail,
+        children: [{
+          index: true,
+          element: <EventDetailPage />,
+
+        },
+        { path: "edit", element: <EditEventPage /> }
+        ]
+
+      },
       { path: "new", element: <NewEventPage /> },
-      { path: ":eventsPage/edit", element: <EditEventPage /> }
+
       ],
     }
   ]
