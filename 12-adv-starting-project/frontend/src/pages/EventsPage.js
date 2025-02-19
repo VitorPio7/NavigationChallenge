@@ -1,32 +1,21 @@
-import { Link } from "react-router"
-import { useEffect, useState } from "react"
+
 import EventsList from "../components/EventsList";
+import { useLoaderData } from "react-router";
 export default function EventsPage() {
-    let [isLoading, setIsLoading] = useState(false);
-    let [dummyData, setDummyData] = useState();
-
-    useEffect(() => {
-        async function getData() {
-            try {
-                setIsLoading(true)
-                let response = await fetch('http://localhost:8080/events');
-                if (!response.ok) {
-                    console.error("Error on fetch your data.");
-                } else {
-                    let resData = await response.json();
-                    setDummyData(resData.events)
-                }
-                setIsLoading(false)
-
-            } catch (error) {
-                throw new Error("An error ocurred", error);
-            }
-        }
-        getData()
-    }, [])
-    return <> <div style={{ textAlign: 'center' }}>
-        {isLoading && <p>Loading...</p>}
-    </div>
-        {!isLoading && dummyData && <EventsList events={dummyData} />}
+    let data = useLoaderData()
+    return <>
+        <EventsList events={data.events} />
     </>
+}
+
+export async function loader() {
+    const response = await fetch('http://localhost:8080/events');
+    if (!response.ok) {
+        throw new Response(JSON.stringify({ message: 'Could not fetch events.' }), {
+            status: 500,
+        });
+    } else {
+        let resData = await response.json();
+        return resData;
+    }
 }
