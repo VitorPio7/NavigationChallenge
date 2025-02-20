@@ -1,15 +1,20 @@
-import { useNavigate, Form } from 'react-router';
+import { useNavigate, Form, useNavigation, useActionData, redirect } from 'react-router';
 
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
+  const data = useActionData();
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  console.log(data)
+  let isSubmitting = navigation.state === 'submitting';
   function cancelHandler() {
     navigate('..');
   }
 
   return (
-    <Form method='post' className={classes.form}>
+    <Form method={method} className={classes.form}>
+      {data && data.errors && <ul>{Object.values(data.errors).map((el) => <li key={el}>{el}</li>)}</ul>}
       <p>
         <label htmlFor="title">Title</label>
         <input id="title" type="text" name="title" required
@@ -31,13 +36,46 @@ function EventForm({ method, event }) {
           defaultValue={event ? event.description : ''} />
       </p>
       <div className={classes.actions}>
-        <button type="button" onClick={cancelHandler}>
+        <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel
         </button>
-        <button>Save</button>
+        <button disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Send'}</button>
       </div>
     </Form>
   );
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const method = request.method;
+  const data = await request.formData();
+
+  const eventData = {
+    title: data.get('title'),
+    image: data.get('image'),
+    date: data.get('date'),
+    description: data.get('description'),
+  };
+  let url = 'http://localhost:8080/events';
+  if (method === 'PATCH') {
+    url = url + '/' + params.eventId;
+  }
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(eventData),
+  });
+  if (response.status === 422) {
+    return response;
+  }
+  if (!response.ok) {
+    throw new Response(JSON.stringify({ message: 'Could not save event.' }), {
+      status: 500,
+    });
+  }
+
+  return redirect('/events');
+}

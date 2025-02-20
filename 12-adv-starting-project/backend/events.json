@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"O componente","image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fevent%2F&psig=AOvVaw0u8ia663vhsNb6d1jVve6P&ust=1740155000400000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPiFidfU0osDFQAAAAAdAAAAABAE","date":"2026-01-02","description":"Em resumo, o useActionData() é uma ferramenta poderosa para gerenciar o fluxo de dados após ações em aplicações React Router. Espero que isso tenha esclarecido sua dúvida! 😊\n\n","id":"5a9cb1c8-c2ad-453c-a85a-73a5bc15d72b"},{"title":"asadasdadsa","image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fevent%2F&psig=AOvVaw0u8ia663vhsNb6d1jVve6P&ust=1740155000400000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPiFidfU0osDFQAAAAAdAAAAABAE","date":"2001-01-05","description":"my event","id":"7fc92cdd-796c-41af-8444-3f2224f32a0f"},{"title":"event","image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fevent%2F&psig=AOvVaw0u8ia663vhsNb6d1jVve6P&ust=1740155000400000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPiFidfU0osDFQAAAAAdAAAAABAE","date":"2001-01-05","description":"my main event","id":"1e3e315c-5dfc-4dde-bfa0-afe4bfbb311e"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
