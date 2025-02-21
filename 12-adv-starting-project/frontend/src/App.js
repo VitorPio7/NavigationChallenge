@@ -8,7 +8,7 @@ import EditEventPage from './pages/EditEventPage';
 import EventsRootLayout from './pages/EventsRootLayout';
 import ErrorPage from './pages/ErrorPage';
 import { action as manipulateEventAction } from './pages/EventDetailPage';
-
+import NewsletterPage, { action as newsletterAction } from './pages/Newsletter'
 let router = createBrowserRouter([{
   path: '/',
   element: <Root />,
@@ -33,14 +33,16 @@ let router = createBrowserRouter([{
         },
         { path: "edit", element: <EditEventPage />, action: manipulateEventAction }
         ]
-
       },
       { path: "new", element: <NewEventPage />, action: manipulateEventAction },
-
       ],
-    }
-
-  ]
+    },
+    {
+      path: 'newsletter',
+      element: <NewsletterPage />,
+      action: newsletterAction
+    },
+  ],
 }])
 
 function App() {
